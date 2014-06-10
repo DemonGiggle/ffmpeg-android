@@ -24,7 +24,7 @@ function build_one
     --extra-ldflags="$ADDI_LDFLAGS" \
     $ADDITIONAL_CONFIGURE_FLAG
 make clean
-make
+make -j4
 make install
 }
 CPU=arm
