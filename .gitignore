@@ -1,0 +1,12 @@
+android
+*.o
+*.d
+*.so
+*.pc
+*.ver
+.config
+.version
+config.fate
+config.h
+config.log
+config.mak
