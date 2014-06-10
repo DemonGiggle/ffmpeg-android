@@ -1,5 +1,4 @@
 #!/bin/bash
-NDK=$HOME/Desktop/adt/android-ndk-r9
 SYSROOT=$NDK/platforms/android-9/arch-arm/
 TOOLCHAIN=$NDK/toolchains/arm-linux-androideabi-4.8/prebuilt/linux-x86_64
 function build_one
@@ -29,4 +28,6 @@ make
 make install
 }
 CPU=arm
-
+PREFIX=$(pwd)/android/$CPU 
+ADDI_CFLAGS="-marm"
+build_one
