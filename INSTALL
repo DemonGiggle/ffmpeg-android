@@ -1,14 +1,9 @@
 
-1) Type './configure' to create the configuration. A list of configure
-options is printed by running 'configure --help'.
+1) The installation instruction comes from: http://www.roman10.net/how-to-build-ffmpeg-with-ndk-r9/
 
-'configure' can be launched from a directory different from the FFmpeg
-sources to build the objects out of tree. To do this, use an absolute
-path when launching 'configure', e.g. '/ffmpegdir/ffmpeg/configure'.
+2) export NDK environment variable. e.g. export NDK=/opt/adt-bundle-linux-x86_64/ndk
 
-2) The installation instruction comes from: http://www.roman10.net/how-to-build-ffmpeg-with-ndk-r9/
-2.1) export NDK environment variable. e.g. export NDK=/opt/adt-bundle-linux-x86_64/ndk
-2.2) ./build_android.sh
+3) ./build_android.sh
 
 NOTICE
 
