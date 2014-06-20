@@ -26,12 +26,13 @@ function build_one
     $ADDITIONAL_CONFIGURE_FLAG
 make clean
 make -j4
-sudo make install
-
-# make a symbolic link to the current source folder
-ln -f -s `pwd` $FFMPEG_OUTPUT_SOURCES
+make install
 }
 CPU=arm
 PREFIX=$(pwd)/android/$CPU 
 ADDI_CFLAGS="-marm"
 build_one
+
+# make a symbolic link to the current source folder
+ln -f -s `pwd` $FFMPEG_OUTPUT_SOURCES
+cp Android.mk $PREFIX
