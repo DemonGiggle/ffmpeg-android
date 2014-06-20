@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)http://www.roman10.net/how-to-build-ffmpeg-with-ndk-r9/ -->
+<html lang="en-US" xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope="" itemtype="http://schema.org/Article"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>How to Build ffmpeg with NDK r9 | roman10</title>
+<!-- Platform WordPress Framework By PageLines - www.PageLines.com -->
+<link rel="shortcut icon" href="http://www.roman10.net/wp-content/themes/platform/admin/images/favicon-pagelines.ico" type="image/x-icon">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="alternate" type="application/rss+xml" title="roman10 » Feed" href="http://www.roman10.net/feed/">
+<link rel="alternate" type="application/rss+xml" title="roman10 » Comments Feed" href="http://www.roman10.net/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="roman10 » How to Build ffmpeg with NDK r9 Comments Feed" href="http://www.roman10.net/how-to-build-ffmpeg-with-ndk-r9/feed/">
+<link rel="stylesheet" id="pagelines-stylesheet-css" href="./install_files/style.css" type="text/css" media="all">
+<!--[if IE 7]>
+<link rel='stylesheet' id='ie7-style-css'  href='http://www.roman10.net/wp-content/themes/platform/css/ie7.css?ver=1.4.3' type='text/css' media='all' />
+<![endif]-->
+<script type="text/javascript" async="" src="./install_files/ga.js"></script><script type="text/javascript" src="./install_files/jquery.js"></script>
+<script type="text/javascript" src="./install_files/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="./install_files/external-tracking.min.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.roman10.net/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.roman10.net/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Android Animation Playback: Inline Animation with TextView" href="http://www.roman10.net/android-animation-playback-inline-animation-with-textview/">
+<link rel="next" title="OneClick Movie Maker Released" href="http://www.roman10.net/oneclick-movie-maker-released/">
+<meta name="generator" content="WordPress 3.9.1">
+<link rel="canonical" href="./install_files/install.html">
+<link rel="shortlink" href="http://www.roman10.net/?p=1087">
+
+<!-- Facebook Open Graph metatags added by WordPress plugin. Get it at: http://www.linksalpha.com/widgets/buttons -->
+<meta property="og:site_name" content="roman10">
+<meta property="og:title" content="How to Build ffmpeg with NDK r9">
+<meta property="og:url" content="http://www.roman10.net/how-to-build-ffmpeg-with-ndk-r9/">
+<meta property="og:description" content="This is a updated post for a previous post, where we built ffmpeg 0.8 with Android NDK r5 and r6. This post will give instructions of how to build ffmpeg 2.0.1 with Android NDK r9. 0. Download Android NDK The latest version of Android NDK can be downloaded at Android NDK website. At the time of">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<!-- End Facebook Open Graph metatags-->
+
+<!-- Google Plus metatags added by WordPress plugin. Get it at: http://www.linksalpha.com/widgets/buttons -->
+<meta itemprop="name" content="How to Build ffmpeg with NDK r9">
+<meta itemprop="description" content="This is a updated post for a previous post, where we built ffmpeg 0.8 with Android NDK r5 and r6. This post will give instructions of how to build ffmpeg 2.0.1 with Android NDK r9. 0. Download Android NDK The latest version of Android NDK can be downloaded at Android NDK website. At the time of">
+<!-- End Google Plus metatags-->
+<link rel="stylesheet" id="dynamic-css" href="./install_files/dynamic.css" type="text/css" media="all">
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+<!-- Google Analytics Tracking by Google Analyticator 6.4.7.3: http://www.videousermanuals.com/google-analyticator/ -->
+<script type="text/javascript">
+                var analyticsFileTypes = [''];
+                            var analyticsSnippet = 'enabled';
+                var analyticsEventTracking = 'enabled';
+            </script>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+  
+	_gaq.push(['_setAccount', 'UA-22227745-1']);
+    _gaq.push(['_addDevId', 'i9k95']); // Google Analyticator App ID with Google
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+<script type="text/javascript" src="./install_files/require.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jquery" src="./install_files/jquery.min.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jqueryui" src="./install_files/jquery-ui.min.js"></script><link href="./install_files/social_icons.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="./install_files/require.js"></script><link href="./install_files/social_icon.css" type="text/css" rel="stylesheet"></head>
+<body class="single single-post postid-1087 single-format-standard canvas ttype-single tmain-single">
+<div id="site" class="one-sidebar-right"> <!-- #site // Wraps #header, #page-main, #footer - closed in footer -->
+	<div id="page"> <!-- #page // Wraps #header, #page-main - closed in footer -->
+		<div id="page-canvas">
+						<div id="header" class="container-group fix">
+				<div class="outline">
+					<div id="branding" class="container fix">
+	<div class="texture">
+		<div class="content">
+			<div class="content-pad">
+<div class="branding_wrap">
+	<div class="title-container"><a class="home site-title" href="http://www.roman10.net/" title="Home">roman10</a><h6 class="site-description subhead">A Journey to Software Craftsmanship</h6></div>		
+	
+	<div class="icons" style="bottom: 21px; right: 1px;">
+
+				<a target="_blank" href="http://www.roman10.net/feed/" class="rsslink"></a>
+		
+																			</div>
+</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="primary-nav" class="container fix">
+	<div class="texture">
+		<div class="content">
+			<div class="content-pad">
+	<div id="nav_row" class="main_nav fix">
+	
+	<ul id="menu-nav" class="main-nav">
+		<li class="page_item page-item-352"><a href="http://www.roman10.net/about-me/">About Me</a></li>
+<li class="page_item page-item-668"><a href="https://market.android.com/developer?pub=roman10" target="_blank">Android Apps</a></li>
+<li class="page_item page-item-713"><a href="http://www.roman10.net/category/android-apps/video-converter-android/">Video Converter Android</a></li>
+<li class="page_item page-item-1079"><a href="http://www.roman10.net/wp-content/uploads/2013/08/feipeng_resume_2013_8_8.pdf" target="_blank">Resume</a></li>
+	</ul><form method="get" class="searchform" action="http://www.roman10.net/" onsubmit="this.submit();return false;">
+	<fieldset>
+		<input type="text" value="Search" name="s" class="searchfield" onfocus="if (this.value == &#39;Search&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Search&#39;;}">
+
+		<input type="image" class="submit btn" name="submit" src="./install_files/search-btn.png" alt="Go">
+	</fieldset>
+</form>
+	</div>
+
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+</div>
+				</div>
+			</div>
+						<div id="page-main" class="container-group fix"> <!-- #page-main // closed in footer -->
+				<div id="dynamic-content" class="outline fix">
+					<div id="maincontent" class="container fix">
+	<div class="texture">
+		<div class="content">
+			<div class="content-pad">
+<div id="pagelines_content" class="one-sidebar-right fix">
+	
+		<div id="column-wrap" class="fix">
+		
+				<div id="column-main" class="mcolumn fix">
+			<div class="mcolumn-pad">
+				<div id="postnav" class="copy fix">
+	<div class="copy-pad">
+   			<div class="post-nav fix"> 
+			<span class="previous"><a href="http://www.roman10.net/android-animation-playback-inline-animation-with-textview/" rel="prev">Android Animation Playback: Inline Animation with TextView</a></span> 
+			<span class="next"><a href="http://www.roman10.net/oneclick-movie-maker-released/" rel="next">OneClick Movie Maker Released</a></span>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<div id="theloop" class="copy fix">
+	<div class="copy-pad">
+<div class="post-1087 post type-post status-publish format-standard hentry category-android-tutorial category-ffmpeg-on-android category-ndk fpost" id="post-1087">
+				
+				
+					
+						<div class="post-meta fix">	
+							
+							<div class="post-header fix post-nothumb" style="">
+																<div class="post-title-section fix">
+
+									<div class="post-title fix">
+										
+										<h1 class="entry-title">How to Build ffmpeg with NDK r9</h1>
+<div class="metabar"><em><span class="sword">By</span> <span class="author vcard"><span class="fn"><a href="http://www.roman10.net/author/roman10/" title="Posts by roman10" rel="author">roman10</a></span></span> <span class="sword">On</span> <span class="date time published" title="2013-08-18T10:54:53+0000">August 18, 2013</span>  · <span class="post-comments"><a href="http://www.roman10.net/how-to-build-ffmpeg-with-ndk-r9/#comments">89 Comments</a></span>  </em></div>										
+									</div>
+
+
+								</div>
+															</div>				
+						</div>
+					
+					  	
+						<div class="entry_wrap fix">
+						
+							<div class="entry_content">
+								<!--Ad Injection:top-->
+<div style=""><center><script type="text/javascript"><!--
+google_ad_client = "ca-pub-3572106968166596";
+/* roman10.net top 2 */
+google_ad_slot = "5217569112";
+google_ad_width = 468;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></center></div><p></p>
+<p>This is a updated post for a previous post, where we <a href="http://www.roman10.net/how-to-build-ffmpeg-for-android/" target="_blank">built ffmpeg 0.8 with Android NDK r5 and r6</a>. This post will give instructions of how to build ffmpeg 2.0.1 with Android NDK r9.  </p>
+<p><strong>0. Download Android NDK</strong> </p>
+<p>The latest version of Android NDK can be downloaded at <a href="http://developer.android.com/tools/sdk/ndk/index.html">Android NDK website</a>. At the time of writing, the newest version is NDK r9. Note that the website provides both current and legacy toolchains. We only need the current toolchain to compile ffmpeg.  </p>
+<p>After download NDK, simply decompress the archive. Note that we’ll use $NDK to represent the root path of the decompressed NDK.  </p>
+<p><strong>1. Download ffmpeg source code</strong> </p>
+<p>FFMPEG source code can be downloaded from the <a href="http://www.ffmpeg.org/download.html">ffmpeg website</a>. The latest stable release is 2.0.1. Download the source code and decompress it to $NDK/sources folder. We’ll discuss about the reason for doing this later.  </p>
+<p><strong>2. Update configure file</strong>  </p>
+<p>Open ffmpeg-2.0.1/configure file with a text editor, and locate the following lines.</p>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: &#39;Courier New&#39;, courier, monospace; border-right: silver 1px solid; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 200px; width: 97.5%; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">
+<pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">SLIBNAME_WITH_MAJOR=<span style="color: #006080">'$(SLIBNAME).$(LIBMAJOR)'</span></pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">LIB_INSTALL_EXTRA_CMD=<span style="color: #006080">'$$(RANLIB) "$(LIBDIR)/$(LIBNAME)"'</span></pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">SLIB_INSTALL_NAME=<span style="color: #006080">'$(SLIBNAME_WITH_VERSION)'</span></pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">SLIB_INSTALL_LINKS=<span style="color: #006080">'$(SLIBNAME_WITH_MAJOR) $(SLIBNAME)'</span></pre>
+<p><!--CRLF--></p></div>
+</div>
+<p>This cause ffmpeg shared libraries to be compiled to libavcodec.so.&lt;version&gt; (e.g. libavcodec.so.55), which is not compatible with Android build system. Therefore we’ll need to replace the above lines with the following lines.</p>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: &#39;Courier New&#39;, courier, monospace; border-right: silver 1px solid; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 200px; width: 97.5%; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">
+<pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">SLIBNAME_WITH_MAJOR=<span style="color: #006080">'$(SLIBPREF)$(FULLNAME)-$(LIBMAJOR)$(SLIBSUF)'</span></pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">LIB_INSTALL_EXTRA_CMD=<span style="color: #006080">'$$(RANLIB) "$(LIBDIR)/$(LIBNAME)"'</span></pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">SLIB_INSTALL_NAME=<span style="color: #006080">'$(SLIBNAME_WITH_MAJOR)'</span></pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">SLIB_INSTALL_LINKS=<span style="color: #006080">'$(SLIBNAME)'</span></pre>
+<p><!--CRLF--></p></div>
+</div>
+<p><strong>3. Build ffmpeg</strong>
+</p>
+<p>Copy the following text to a text editor and save it as build_android.sh.
+</p>
+<p></p>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: &#39;Courier New&#39;, courier, monospace; border-right: silver 1px solid; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 200px; width: 97.5%; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">
+<pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white"><span style="color: #008000">#!/bin/bash</span></pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">NDK=$HOME/Desktop/adt/android-ndk-r9</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">SYSROOT=$NDK/platforms/android-9/arch-arm/</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">TOOLCHAIN=$NDK/toolchains/arm-linux-androideabi-4.8/prebuilt/linux-x86_64</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white"><span style="color: #0000ff">function</span> build_one</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">{</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">./configure \</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">    --prefix=$PREFIX \</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">    --enable-shared \</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">    --disable-static \</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">    --disable-doc \</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">    --disable-ffmpeg \</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">    --disable-ffplay \</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">    --disable-ffprobe \</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">    --disable-ffserver \</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">    --disable-avdevice \</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">    --disable-doc \</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">    --disable-symver \</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">    --cross-prefix=$TOOLCHAIN/bin/arm-linux-androideabi- \</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">    --target-os=linux \</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">    --arch=arm \</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">    --enable-cross-compile \</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">    --sysroot=$SYSROOT \</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">    --extra-cflags=<span style="color: #006080">"-Os -fpic $ADDI_CFLAGS"</span> \</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">    --extra-ldflags=<span style="color: #006080">"$ADDI_LDFLAGS"</span> \</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">    $ADDITIONAL_CONFIGURE_FLAG</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">make clean</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">make</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">make install</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">}</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">CPU=arm</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">PREFIX=$(pwd)/android/$CPU </pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">ADDI_CFLAGS=<span style="color: #006080">"-marm"</span></pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">build_one</pre>
+<p><!--CRLF--></p></div>
+</div>
+<p>We disabled static library and enabled shared library. Note that the build script is not optimized for a particular CPU. One should refer to ffmpeg documentation for detailed information about available configure options.
+</p>
+<p>Once the file is saved, make sure the script is executable by the command below,</p>
+<blockquote>
+<p>sudo chmod +x build_android.sh</p>
+</blockquote>
+<p>Then execute the script by the command,</p>
+<blockquote>
+<p>./build_android.sh</p>
+</blockquote>
+<p><strong>4. Build Output</strong>
+</p>
+<p>The build can take a while to finish depending on your computer speed. Once it’s done, you should be able to find a folder $NDK/sources/ffmpeg-2.0.1/android, which contains arm/lib and arm/include folders.
+</p>
+<p>The arm/lib folder contains the shared libraries, while arm/include folder contains the header files for libavcodec, libavformat, libavfilter, libavutil, libswscale etc.
+</p>
+<p>Note that the arm/lib folder contains both the library files (e.g.: libavcodec-55.so) and symbolic links (e.g.: libavcodec.so) to them. We can remove the symbolic links to avoid confusion.
+</p>
+<p><strong>5. Make ffmpeg Libraries available for Your Projects</strong>
+</p>
+<p>Now we’ve compiled the ffmpeg libraries and ready to use them. Android NDK allows us to reuse a compiled module through the import-module build command.
+</p>
+<p>The reason we built our ffmpeg source code under $NDK/sources folder is that NDK build system will search for directories under this path for external modules automatically. To declare the ffmpeg libraries as reusable modules, we’ll need to add a file named $NDK/sources/ffmpeg-2.0.1/android/arm/Android.mk with the following content,
+</p>
+<p></p>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: &#39;Courier New&#39;, courier, monospace; border-right: silver 1px solid; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 200px; width: 97.5%; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">
+<pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">LOCAL_PATH:= $(call my-dir)</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">&nbsp;</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">include $(CLEAR_VARS)</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">LOCAL_MODULE:= libavcodec</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">LOCAL_SRC_FILES:= lib/libavcodec-55.so</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/include</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">include $(PREBUILT_SHARED_LIBRARY)</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">&nbsp;</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">include $(CLEAR_VARS)</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">LOCAL_MODULE:= libavformat</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">LOCAL_SRC_FILES:= lib/libavformat-55.so</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/include</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">include $(PREBUILT_SHARED_LIBRARY)</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">&nbsp;</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">include $(CLEAR_VARS)</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">LOCAL_MODULE:= libswscale</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">LOCAL_SRC_FILES:= lib/libswscale-2.so</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/include</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">include $(PREBUILT_SHARED_LIBRARY)</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">&nbsp;</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">include $(CLEAR_VARS)</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">LOCAL_MODULE:= libavutil</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">LOCAL_SRC_FILES:= lib/libavutil-52.so</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/include</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">include $(PREBUILT_SHARED_LIBRARY)</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">&nbsp;</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">include $(CLEAR_VARS)</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">LOCAL_MODULE:= libavfilter</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">LOCAL_SRC_FILES:= lib/libavfilter-3.so</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/include</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">include $(PREBUILT_SHARED_LIBRARY)</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">&nbsp;</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">include $(CLEAR_VARS)</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">LOCAL_MODULE:= libwsresample</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">LOCAL_SRC_FILES:= lib/libswresample-0.so</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/include</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">include $(PREBUILT_SHARED_LIBRARY)</pre>
+<p><!--CRLF--></p></div>
+</div>
+<p>Below is an example of how we can use the libraries in a Android project’s jni/Android.mk file, </p>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: &#39;Courier New&#39;, courier, monospace; border-right: silver 1px solid; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 200px; width: 97.5%; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">
+<pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">LOCAL_PATH := $(call my-dir)</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">&nbsp;</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">include $(CLEAR_VARS)</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">&nbsp;</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">LOCAL_MODULE    := tutorial03</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">LOCAL_SRC_FILES := tutorial03.c</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">LOCAL_LDLIBS := -llog -ljnigraphics -lz -landroid</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">LOCAL_SHARED_LIBRARIES := libavformat libavcodec libswscale libavutil</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">&nbsp;</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: #f4f4f4">include $(BUILD_SHARED_LIBRARY)</pre>
+<p><!--CRLF-->
+</p><pre style="border-top-style: none; overflow: visible; font-size: 8pt; border-left-style: none; font-family: &#39;Courier New&#39;, courier, monospace; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; line-height: 12pt; padding-right: 0px; width: 100%; background-color: white">$(call import-module,ffmpeg-2.0.1/android/arm)</pre>
+<p><!--CRLF--></p></div>
+</div>
+<p>Note that we called import-module with the relative path to $NDK/sources for the build system to locate the reusable ffmpeg libraries.
+</p>
+<p>For real examples to how to use the ffmpeg libraries in Android app, please refer to my github repo of<a href="https://github.com/roman10/android-ffmpeg-tutorial"> android-ffmpeg-tutorial</a>. </p>
+<!--Ad Injection:bottom--><script type="text/javascript"><!--
+google_ad_client = "ca-pub-3572106968166596";
+/* roman10.net top 2 */
+google_ad_slot = "5217569112";
+google_ad_width = 468;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script><div style="margin:0px 0px 0px 0px !important;" id="linksalpha_tag_1766681246" data-url="http://www.roman10.net/how-to-build-ffmpeg-with-ndk-r9/" data-text="How to Build ffmpeg with NDK r9" data-desc="This is a updated post for a previous post, where we built ffmpeg 0.8 with Android NDK r5 and r6. This post will give instructions of how to build ffmpeg 2.0.1 with Android NDK r9. 0. Download Android NDK The latest version of Android NDK can be downloaded at Android NDK website. At the time of" data-site="roman10"><div class="linksalpha_button_icons_main">
+	
+	<table class="linksalpha_button_icons_prepend">
+		<tbody><tr>
+			<td class="linksalpha_button_icons_prepend_text" style="width: 128px;">
+				<span style="font-size: 14px !important; color: #7F7F7F !important;font-family:arial !important;">Share this post on:</span>			
+			</td>
+			<td>
+	
+	
+		
+			
+				<span class="linksalpha_button_icons_popup"><a rel="nofollow" target="popup" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=googleplus&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9" class="linksalpha_button_url_title">
+					<span class="linksalpha_button_icons_box_icon_only_16 linksalpha_button_icons_box_googleplus_16" style="font-family:arial !important;">&nbsp;</span>
+				</a></span>
+			
+		
+	
+		
+			
+				<span class="linksalpha_button_icons_popup"><a rel="nofollow" target="popup" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=facebook&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9" class="linksalpha_button_url_title">
+					<span class="linksalpha_button_icons_box_icon_only_16 linksalpha_button_icons_box_facebook_16" style="font-family:arial !important;">&nbsp;</span>
+				</a></span>
+			
+		
+	
+		
+			
+				<span class="linksalpha_button_icons_popup"><a rel="nofollow" target="popup" href="http://www.linksalpha.com/social/redirect?twitterrelated=%2C&url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=twitter&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9" class="linksalpha_button_url_title">
+					<span class="linksalpha_button_icons_box_icon_only_16 linksalpha_button_icons_box_twitter_16" style="font-family:arial !important;">&nbsp;</span>
+				</a></span>
+			
+		
+	
+		
+			
+				<span class="linksalpha_button_icons_popup"><a rel="nofollow" target="popup" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=linkedin&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9" class="linksalpha_button_url_title">
+					<span class="linksalpha_button_icons_box_icon_only_16 linksalpha_button_icons_box_linkedin_16" style="font-family:arial !important;">&nbsp;</span>
+				</a></span>
+			
+		
+	
+		
+			
+		
+	
+		
+			
+				<span class="linksalpha_button_icons_popup"><a rel="nofollow" target="popup" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=stumbleupon&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9" class="linksalpha_button_url_title">
+					<span class="linksalpha_button_icons_box_icon_only_16 linksalpha_button_icons_box_stumbleupon_16" style="font-family:arial !important;">&nbsp;</span>
+				</a></span>
+			
+		
+	
+		
+			
+				<span class="linksalpha_button_icons_popup"><a rel="nofollow" target="popup" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=pinterest&body=This%20is%20a%20updated%20post%20for%20a%20previous%20post%2C%20where%20we%20built%20ffmpeg%200.8%20with%20Android%20NDK%20r5%20and%20r6.%20This%20post%20will%20give%20instructions%20of%20how%20to%20build%20ffmpeg%202.0.1%20with%20Android%20NDK%20r9.%200.%20Download%20Android%20NDK%20The%20latest%20version%20of%20Android%20NDK%20can%20be%20downloaded%20at%20Android%20NDK%20website.%20At%20the%20time%20of" class="linksalpha_button_url_body_photo">
+					<span class="linksalpha_button_icons_box_icon_only_16 linksalpha_button_icons_box_pinterest_16" style="font-family:arial !important;">&nbsp;</span>
+				</a></span>
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+				<span class="linksalpha_button_icons_popup"><a rel="nofollow" href="mailto:?subject=How%20to%20Build%20ffmpeg%20with%20NDK%20r9&body=This%20is%20a%20updated%20post%20for%20a%20previous%20post,%20where%20we%20built%20ffmpeg%200.8%20with%20Android%20NDK%20r5%20and%20r6.%20This%20post%20will%20give%20instructions%20of%20how%20to%20build%20ffmpeg%202.0.1%20with%20Android%20NDK%20r9.%200.%20Download%20Android%20NDK%20The%20latest%20version%20of%20Android%20NDK%20can%20be%20downloaded%20at%20Android%20NDK%20website.%20At%20the%20time%20of...%20http://p.ost.im/dGAtLL" class="linksalpha_button_email">
+					<span class="linksalpha_button_icons_box_icon_only_16 linksalpha_button_icons_box_email_16" style="font-family:arial !important;">&nbsp;</span>
+				</a></span>
+			
+		
+	
+		
+			
+		
+	
+		
+	
+		
+	
+		
+			
+		
+	
+		
+	
+	<div class="linksalpha_button_icons_16">
+		<a rel="nofollow" class="linksalpha_button_only" id="linksalpha_tag_1766681246_icons" href="http://www.linksalpha.com/social/mobile">
+			<span class="linksalpha_button_icons_text_16" style="font-family:arial !important;">&nbsp;</span>
+		</a>
+		<div style="display:none" title="&lt;span class=&quot;linksalpha_button_icons_light&quot; style=&quot;font-family:arial !important;&quot;&gt;Share this Page&lt;/span&gt;" id="linksalpha-dialog-form_linksalpha_tag_1766681246" name="linksalpha-dialog-form_linksalpha_tag_1766681246" class="linksalpha-dialog-form">
+			
+				
+					
+		    	
+		    
+				
+					
+		    	
+		    
+				
+					
+		    	
+		    
+				
+					
+		    	
+		    
+				
+					
+				    	<div class="linksalpha_button_icons_box">
+				        	<a rel="nofollow" target="popup" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=reddit&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9" class="linksalpha_button_url_title"><span class="linksalpha_button_icons_box linksalpha_button_icons_box_reddit" style="font-family:arial !important;">Reddit</span></a>
+				    	</div>
+				    
+		    	
+		    
+				
+					
+		    	
+		    
+				
+					
+		    	
+		    
+				
+					
+				    	<div class="linksalpha_button_icons_box">
+				        	<a rel="nofollow" target="popup" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=foursquare&vid=undefined" class="linksalpha_button_url_vid"><span class="linksalpha_button_icons_box linksalpha_button_icons_box_foursquare" style="font-family:arial !important;">foursquare</span></a>
+				    	</div>
+				    
+		    	
+		    
+				
+					
+				    	<div class="linksalpha_button_icons_box">
+				        	<a rel="nofollow" target="popup" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=digg&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9&body=This%20is%20a%20updated%20post%20for%20a%20previous%20post%2C%20where%20we%20built%20ffmpeg%200.8%20with%20Android%20NDK%20r5%20and%20r6.%20This%20post%20will%20give%20instructions%20of%20how%20to%20build%20ffmpeg%202.0.1%20with%20Android%20NDK%20r9.%200.%20Download%20Android%20NDK%20The%20latest%20version%20of%20Android%20NDK%20can%20be%20downloaded%20at%20Android%20NDK%20website.%20At%20the%20time%20of" class="linksalpha_button_url_title_body"><span class="linksalpha_button_icons_box linksalpha_button_icons_box_digg" style="font-family:arial !important;">Digg</span></a>
+				    	</div>
+				    
+		    	
+		    
+				
+					
+				    	<div class="linksalpha_button_icons_box">
+				        	<a rel="nofollow" target="popup" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=delicious&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9" class="linksalpha_button_url_title"><span class="linksalpha_button_icons_box linksalpha_button_icons_box_delicious" style="font-family:arial !important;">Delicious</span></a>
+				    	</div>
+				    
+		    	
+		    
+				
+					
+				    	<div class="linksalpha_button_icons_box">
+				        	<a rel="nofollow" target="_blank" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=diigo&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9&body=This%20is%20a%20updated%20post%20for%20a%20previous%20post%2C%20where%20we%20built%20ffmpeg%200.8%20with%20Android%20NDK%20r5%20and%20r6.%20This%20post%20will%20give%20instructions%20of%20how%20to%20build%20ffmpeg%202.0.1%20with%20Android%20NDK%20r9.%200.%20Download%20Android%20NDK%20The%20latest%20version%20of%20Android%20NDK%20can%20be%20downloaded%20at%20Android%20NDK%20website.%20At%20the%20time%20of" class="linksalpha_button_url_title_body"><span class="linksalpha_button_icons_box linksalpha_button_icons_box_diigo" style="font-family:arial !important;">Diigo</span></a>
+				    	</div>
+				    
+		    	
+		    
+				
+					
+				    	<div class="linksalpha_button_icons_box">
+				        	<a rel="nofollow" target="_blank" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=evernote&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9&body=This%20is%20a%20updated%20post%20for%20a%20previous%20post%2C%20where%20we%20built%20ffmpeg%200.8%20with%20Android%20NDK%20r5%20and%20r6.%20This%20post%20will%20give%20instructions%20of%20how%20to%20build%20ffmpeg%202.0.1%20with%20Android%20NDK%20r9.%200.%20Download%20Android%20NDK%20The%20latest%20version%20of%20Android%20NDK%20can%20be%20downloaded%20at%20Android%20NDK%20website.%20At%20the%20time%20of" class="linksalpha_button_url_title_body"><span class="linksalpha_button_icons_box linksalpha_button_icons_box_evernote" style="font-family:arial !important;">Evernote</span></a>
+				    	</div>
+				    
+		    	
+		    
+				
+					
+				    	<div class="linksalpha_button_icons_box">
+				        	<a rel="nofollow" target="_blank" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=tumblr&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9&body=This%20is%20a%20updated%20post%20for%20a%20previous%20post%2C%20where%20we%20built%20ffmpeg%200.8%20with%20Android%20NDK%20r5%20and%20r6.%20This%20post%20will%20give%20instructions%20of%20how%20to%20build%20ffmpeg%202.0.1%20with%20Android%20NDK%20r9.%200.%20Download%20Android%20NDK%20The%20latest%20version%20of%20Android%20NDK%20can%20be%20downloaded%20at%20Android%20NDK%20website.%20At%20the%20time%20of" class="linksalpha_button_url_title_body"><span class="linksalpha_button_icons_box linksalpha_button_icons_box_tumblr" style="font-family:arial !important;">Tumblr</span></a>
+				    	</div>
+				    
+		    	
+		    
+				
+					
+				    	<div class="linksalpha_button_icons_box">
+				        	<a rel="nofollow" target="popup" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=yammer&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9" class="linksalpha_button_url_title"><span class="linksalpha_button_icons_box linksalpha_button_icons_box_yammer" style="font-family:arial !important;">Yammer</span></a>
+				    	</div>
+				    
+		    	
+		    
+				
+					
+				    	<div class="linksalpha_button_icons_box">
+				        	<a rel="nofollow" target="_blank" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=livejournal&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9&body=This%20is%20a%20updated%20post%20for%20a%20previous%20post%2C%20where%20we%20built%20ffmpeg%200.8%20with%20Android%20NDK%20r5%20and%20r6.%20This%20post%20will%20give%20instructions%20of%20how%20to%20build%20ffmpeg%202.0.1%20with%20Android%20NDK%20r9.%200.%20Download%20Android%20NDK%20The%20latest%20version%20of%20Android%20NDK%20can%20be%20downloaded%20at%20Android%20NDK%20website.%20At%20the%20time%20of" class="linksalpha_button_url_title_body"><span class="linksalpha_button_icons_box linksalpha_button_icons_box_livejournal" style="font-family:arial !important;">LiveJournal</span></a>
+				    	</div>
+				    
+		    	
+		    
+				
+					
+				    	<div class="linksalpha_button_icons_box">
+				        	<a rel="nofollow" target="popup" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=instapaper&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9&body=This%20is%20a%20updated%20post%20for%20a%20previous%20post%2C%20where%20we%20built%20ffmpeg%200.8%20with%20Android%20NDK%20r5%20and%20r6.%20This%20post%20will%20give%20instructions%20of%20how%20to%20build%20ffmpeg%202.0.1%20with%20Android%20NDK%20r9.%200.%20Download%20Android%20NDK%20The%20latest%20version%20of%20Android%20NDK%20can%20be%20downloaded%20at%20Android%20NDK%20website.%20At%20the%20time%20of" class="linksalpha_button_url_title_body"><span class="linksalpha_button_icons_box linksalpha_button_icons_box_instapaper" style="font-family:arial !important;">Instapaper</span></a>
+				    	</div>
+				    
+		    	
+		    
+				
+					
+				    	<div class="linksalpha_button_icons_box">
+				        	<a rel="nofollow" target="popup" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=pocket&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9" class="linksalpha_button_url_title"><span class="linksalpha_button_icons_box linksalpha_button_icons_box_pocket" style="font-family:arial !important;">Pocket</span></a>
+				    	</div>
+				    
+		    	
+		    
+				
+					
+				    	<div class="linksalpha_button_icons_box">
+				        	<a rel="nofollow" target="popup" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=sonico&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9" class="linksalpha_button_url_title"><span class="linksalpha_button_icons_box linksalpha_button_icons_box_sonico" style="font-family:arial !important;">Sonico</span></a>
+				    	</div>
+				    
+		    	
+		    
+				
+					
+				    	<div class="linksalpha_button_icons_box">
+				        	<a rel="nofollow" target="_blank" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=netlog&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9&body=This%20is%20a%20updated%20post%20for%20a%20previous%20post%2C%20where%20we%20built%20ffmpeg%200.8%20with%20Android%20NDK%20r5%20and%20r6.%20This%20post%20will%20give%20instructions%20of%20how%20to%20build%20ffmpeg%202.0.1%20with%20Android%20NDK%20r9.%200.%20Download%20Android%20NDK%20The%20latest%20version%20of%20Android%20NDK%20can%20be%20downloaded%20at%20Android%20NDK%20website.%20At%20the%20time%20of" class="linksalpha_button_url_title_body"><span class="linksalpha_button_icons_box linksalpha_button_icons_box_netlog" style="font-family:arial !important;">Netlog</span></a>
+				    	</div>
+				    
+		    	
+		    
+				
+					
+				    	<div class="linksalpha_button_icons_box">
+				        	<a rel="nofollow" target="_blank" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=vkontakte&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9" class="linksalpha_button_url_title"><span class="linksalpha_button_icons_box linksalpha_button_icons_box_vkontakte" style="font-family:arial !important;">Vkontakte</span></a>
+				    	</div>
+				    
+		    	
+		    
+				
+					
+				    	<div class="linksalpha_button_icons_box">
+				        	<a rel="nofollow" target="_blank" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=hyves&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9&body=This%20is%20a%20updated%20post%20for%20a%20previous%20post%2C%20where%20we%20built%20ffmpeg%200.8%20with%20Android%20NDK%20r5%20and%20r6.%20This%20post%20will%20give%20instructions%20of%20how%20to%20build%20ffmpeg%202.0.1%20with%20Android%20NDK%20r9.%200.%20Download%20Android%20NDK%20The%20latest%20version%20of%20Android%20NDK%20can%20be%20downloaded%20at%20Android%20NDK%20website.%20At%20the%20time%20of" class="linksalpha_button_url_title_body"><span class="linksalpha_button_icons_box linksalpha_button_icons_box_hyves" style="font-family:arial !important;">Hyves</span></a>
+				    	</div>
+				    
+		    	
+		    
+				
+					
+				    	<div class="linksalpha_button_icons_box">
+				        	<a rel="nofollow" target="_blank" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=xing&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9" class="linksalpha_button_url_title"><span class="linksalpha_button_icons_box linksalpha_button_icons_box_xing" style="font-family:arial !important;">Xing</span></a>
+				    	</div>
+				    
+		    	
+		    
+				
+					
+				    	<div class="linksalpha_button_icons_box">
+				        	<a rel="nofollow" target="popup" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=mailru&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9" class="linksalpha_button_url_title"><span class="linksalpha_button_icons_box linksalpha_button_icons_box_mailru" style="font-family:arial !important;">Mail.ru</span></a>
+				    	</div>
+				    
+		    	
+		    
+				
+					
+				    	<div class="linksalpha_button_icons_box">
+				        	<a rel="nofollow" target="popup" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=weibo&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9" class="linksalpha_button_url_title_photo"><span class="linksalpha_button_icons_box linksalpha_button_icons_box_weibo" style="font-family:arial !important;">Weibo</span></a>
+				    	</div>
+				    
+		    	
+		    
+				
+					
+				    	<div class="linksalpha_button_icons_box">
+				        	<a rel="nofollow" target="_blank" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=yahoomail&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9&body=This%20is%20a%20updated%20post%20for%20a%20previous%20post%2C%20where%20we%20built%20ffmpeg%200.8%20with%20Android%20NDK%20r5%20and%20r6.%20This%20post%20will%20give%20instructions%20of%20how%20to%20build%20ffmpeg%202.0.1%20with%20Android%20NDK%20r9.%200.%20Download%20Android%20NDK%20The%20latest%20version%20of%20Android%20NDK%20can%20be%20downloaded%20at%20Android%20NDK%20website.%20At%20the%20time%20of" class="linksalpha_button_url_title_body"><span class="linksalpha_button_icons_box linksalpha_button_icons_box_yahoomail" style="font-family:arial !important;">Yahoo Mail</span></a>
+				    	</div>
+				    
+		    	
+		    
+				
+					
+				    	<div class="linksalpha_button_icons_box">
+				        	<a rel="nofollow" target="_blank" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=gmail&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9&body=This%20is%20a%20updated%20post%20for%20a%20previous%20post%2C%20where%20we%20built%20ffmpeg%200.8%20with%20Android%20NDK%20r5%20and%20r6.%20This%20post%20will%20give%20instructions%20of%20how%20to%20build%20ffmpeg%202.0.1%20with%20Android%20NDK%20r9.%200.%20Download%20Android%20NDK%20The%20latest%20version%20of%20Android%20NDK%20can%20be%20downloaded%20at%20Android%20NDK%20website.%20At%20the%20time%20of" class="linksalpha_button_url_title_body"><span class="linksalpha_button_icons_box linksalpha_button_icons_box_gmail" style="font-family:arial !important;">Gmail</span></a>
+				    	</div>
+				    
+		    	
+		    
+				
+					
+				    	<div class="linksalpha_button_icons_box">
+				        	<a rel="nofollow" target="_blank" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=hotmail&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9&body=This%20is%20a%20updated%20post%20for%20a%20previous%20post%2C%20where%20we%20built%20ffmpeg%200.8%20with%20Android%20NDK%20r5%20and%20r6.%20This%20post%20will%20give%20instructions%20of%20how%20to%20build%20ffmpeg%202.0.1%20with%20Android%20NDK%20r9.%200.%20Download%20Android%20NDK%20The%20latest%20version%20of%20Android%20NDK%20can%20be%20downloaded%20at%20Android%20NDK%20website.%20At%20the%20time%20of" class="linksalpha_button_url_title_body"><span class="linksalpha_button_icons_box linksalpha_button_icons_box_hotmail" style="font-family:arial !important;">Hotmail</span></a>
+				    	</div>
+				    
+		    	
+		    
+				
+					
+				    	<div class="linksalpha_button_icons_box">
+				        	<a rel="nofollow" target="_blank" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=aolmail&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9&body=This%20is%20a%20updated%20post%20for%20a%20previous%20post%2C%20where%20we%20built%20ffmpeg%200.8%20with%20Android%20NDK%20r5%20and%20r6.%20This%20post%20will%20give%20instructions%20of%20how%20to%20build%20ffmpeg%202.0.1%20with%20Android%20NDK%20r9.%200.%20Download%20Android%20NDK%20The%20latest%20version%20of%20Android%20NDK%20can%20be%20downloaded%20at%20Android%20NDK%20website.%20At%20the%20time%20of" class="linksalpha_button_url_title_body"><span class="linksalpha_button_icons_box linksalpha_button_icons_box_aolmail" style="font-family:arial !important;">AOL Mail</span></a>
+				    	</div>
+				    
+		    	
+		    
+				
+					
+		    	
+		    
+				
+					
+				    	<div class="linksalpha_button_icons_box">
+				        	<a rel="nofollow" target="print" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=print&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9&body=This%20is%20a%20updated%20post%20for%20a%20previous%20post%2C%20where%20we%20built%20ffmpeg%200.8%20with%20Android%20NDK%20r5%20and%20r6.%20This%20post%20will%20give%20instructions%20of%20how%20to%20build%20ffmpeg%202.0.1%20with%20Android%20NDK%20r9.%200.%20Download%20Android%20NDK%20The%20latest%20version%20of%20Android%20NDK%20can%20be%20downloaded%20at%20Android%20NDK%20website.%20At%20the%20time%20of" class="linksalpha_button_url_title_body"><span class="linksalpha_button_icons_box linksalpha_button_icons_box_print" style="font-family:arial !important;">Print</span></a>
+				    	</div>
+				    
+		    	
+		    
+				
+		    
+				
+		    
+				
+					
+				    	<div class="linksalpha_button_icons_box">
+				        	<a rel="nofollow" target="_blank" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=myspace&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9" class="linksalpha_button_url_title"><span class="linksalpha_button_icons_box linksalpha_button_icons_box_myspace" style="font-family:arial !important;">Myspace</span></a>
+				    	</div>
+				    
+		    	
+		    
+				
+		    
+		</div>
+		<div style="display:none" title="Share this Page" id="linksalpha-dialog-form_linksalpha_tag_1766681246_success" name="linksalpha-dialog-form_linksalpha_tag_1766681246_success" class="linksalpha-dialog-form">
+		    <div class="noticeSuc"><img src="./install_files/tWTKyZCzJPEqSHRgUB6RqQQVoDT5R6XejJUtqvx6-Wnq0PxnIa2Qc-Uu5kiRnesPYEli8i82K_-Mwin7rF0" style="vertical-align: bottom !important;">&nbsp;Page has been shared successfully.</div>
+		</div>
+	</div>
+	
+			</td>
+		</tr>
+	</tbody></table>
+	
+</div>
+
+</div><script type="text/javascript" src="./install_files/loader_icons"></script><div style="margin:0px 0px 0px 0px !important;" id="linksalpha_tag_1268139636" data-url="http://www.roman10.net/how-to-build-ffmpeg-with-ndk-r9/" data-text="How to Build ffmpeg with NDK r9" data-desc="This is a updated post for a previous post, where we built ffmpeg 0.8 with Android NDK r5 and r6. This post will give instructions of how to build ffmpeg 2.0.1 with Android NDK r9. 0. Download Android NDK The latest version of Android NDK can be downloaded at Android NDK website. At the time of" data-site="roman10">
+<div class="linksalpha_button_icon">
+
+	<a rel="nofollow" class="linksalpha_button_only" id="linksalpha_tag_1268139636_icon" href="http://www.linksalpha.com/social/mobile">
+		<span class="linksalpha_button_icon_text" style="font-family:arial !important;">Share</span>
+	</a>
+	<div style="display:none" title="&lt;span class=&quot;linksalpha_button_icon_light&quot; style=&quot;font-family:arial !important;&quot;&gt;Share this Page&lt;/span&gt;" id="linksalpha-dialog-form_linksalpha_tag_1268139636" name="linksalpha-dialog-form_linksalpha_tag_1268139636" class="linksalpha-dialog-form">
+		
+			
+			    <div class="linksalpha_button_icon_box">
+			        <a rel="nofollow" target="popup" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=googleplus&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9" class="linksalpha_button_url_title"><span class="linksalpha_button_icon_box linksalpha_button_icon_box_googleplus" style="font-family:arial !important;">Google Plus</span></a>
+			    </div>
+	    	
+	    
+			
+			    <div class="linksalpha_button_icon_box">
+			        <a rel="nofollow" target="popup" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=facebook&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9" class="linksalpha_button_url_title"><span class="linksalpha_button_icon_box linksalpha_button_icon_box_facebook" style="font-family:arial !important;">Facebook</span></a>
+			    </div>
+	    	
+	    
+			
+			    <div class="linksalpha_button_icon_box">
+			        <a rel="nofollow" target="popup" href="http://www.linksalpha.com/social/redirect?twitterrelated=%2C&url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=twitter&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9" class="linksalpha_button_url_title"><span class="linksalpha_button_icon_box linksalpha_button_icon_box_twitter" style="font-family:arial !important;">Twitter</span></a>
+			    </div>
+	    	
+	    
+			
+			    <div class="linksalpha_button_icon_box">
+			        <a rel="nofollow" target="popup" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=linkedin&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9" class="linksalpha_button_url_title"><span class="linksalpha_button_icon_box linksalpha_button_icon_box_linkedin" style="font-family:arial !important;">LinkedIn</span></a>
+			    </div>
+	    	
+	    
+			
+			    <div class="linksalpha_button_icon_box">
+			        <a rel="nofollow" target="popup" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=reddit&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9" class="linksalpha_button_url_title"><span class="linksalpha_button_icon_box linksalpha_button_icon_box_reddit" style="font-family:arial !important;">Reddit</span></a>
+			    </div>
+	    	
+	    
+			
+			    <div class="linksalpha_button_icon_box">
+			        <a rel="nofollow" target="popup" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=stumbleupon&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9" class="linksalpha_button_url_title"><span class="linksalpha_button_icon_box linksalpha_button_icon_box_stumbleupon" style="font-family:arial !important;">Stumble</span></a>
+			    </div>
+	    	
+	    
+			
+			    <div class="linksalpha_button_icon_box">
+			        <a rel="nofollow" target="popup" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=pinterest&body=This%20is%20a%20updated%20post%20for%20a%20previous%20post%2C%20where%20we%20built%20ffmpeg%200.8%20with%20Android%20NDK%20r5%20and%20r6.%20This%20post%20will%20give%20instructions%20of%20how%20to%20build%20ffmpeg%202.0.1%20with%20Android%20NDK%20r9.%200.%20Download%20Android%20NDK%20The%20latest%20version%20of%20Android%20NDK%20can%20be%20downloaded%20at%20Android%20NDK%20website.%20At%20the%20time%20of" class="linksalpha_button_url_body_photo"><span class="linksalpha_button_icon_box linksalpha_button_icon_box_pinterest" style="font-family:arial !important;">Pinterest</span></a>
+			    </div>
+	    	
+	    
+			
+	    
+			
+	    
+			
+	    
+			
+	    
+			
+	    
+			
+	    
+			
+			    <div class="linksalpha_button_icon_box">
+			        <a rel="nofollow" target="popup" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=yammer&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9" class="linksalpha_button_url_title"><span class="linksalpha_button_icon_box linksalpha_button_icon_box_yammer" style="font-family:arial !important;">Yammer</span></a>
+			    </div>
+	    	
+	    
+			
+	    
+			
+	    
+			
+	    
+			
+	    
+			
+	    
+			
+	    
+			
+	    
+			
+	    
+			
+	    
+			
+	    
+			
+			    <div class="linksalpha_button_icon_box">
+			        <a rel="nofollow" target="_blank" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=yahoomail&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9&body=This%20is%20a%20updated%20post%20for%20a%20previous%20post%2C%20where%20we%20built%20ffmpeg%200.8%20with%20Android%20NDK%20r5%20and%20r6.%20This%20post%20will%20give%20instructions%20of%20how%20to%20build%20ffmpeg%202.0.1%20with%20Android%20NDK%20r9.%200.%20Download%20Android%20NDK%20The%20latest%20version%20of%20Android%20NDK%20can%20be%20downloaded%20at%20Android%20NDK%20website.%20At%20the%20time%20of" class="linksalpha_button_url_title_body"><span class="linksalpha_button_icon_box linksalpha_button_icon_box_yahoomail" style="font-family:arial !important;">Yahoo Mail</span></a>
+			    </div>
+	    	
+	    
+			
+			    <div class="linksalpha_button_icon_box">
+			        <a rel="nofollow" target="_blank" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=gmail&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9&body=This%20is%20a%20updated%20post%20for%20a%20previous%20post%2C%20where%20we%20built%20ffmpeg%200.8%20with%20Android%20NDK%20r5%20and%20r6.%20This%20post%20will%20give%20instructions%20of%20how%20to%20build%20ffmpeg%202.0.1%20with%20Android%20NDK%20r9.%200.%20Download%20Android%20NDK%20The%20latest%20version%20of%20Android%20NDK%20can%20be%20downloaded%20at%20Android%20NDK%20website.%20At%20the%20time%20of" class="linksalpha_button_url_title_body"><span class="linksalpha_button_icon_box linksalpha_button_icon_box_gmail" style="font-family:arial !important;">Gmail</span></a>
+			    </div>
+	    	
+	    
+			
+			    <div class="linksalpha_button_icon_box">
+			        <a rel="nofollow" target="_blank" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=hotmail&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9&body=This%20is%20a%20updated%20post%20for%20a%20previous%20post%2C%20where%20we%20built%20ffmpeg%200.8%20with%20Android%20NDK%20r5%20and%20r6.%20This%20post%20will%20give%20instructions%20of%20how%20to%20build%20ffmpeg%202.0.1%20with%20Android%20NDK%20r9.%200.%20Download%20Android%20NDK%20The%20latest%20version%20of%20Android%20NDK%20can%20be%20downloaded%20at%20Android%20NDK%20website.%20At%20the%20time%20of" class="linksalpha_button_url_title_body"><span class="linksalpha_button_icon_box linksalpha_button_icon_box_hotmail" style="font-family:arial !important;">Hotmail</span></a>
+			    </div>
+	    	
+	    
+			
+	    
+			
+			    <div class="linksalpha_button_icon_box">
+			        <a rel="nofollow" href="mailto:?subject=How%20to%20Build%20ffmpeg%20with%20NDK%20r9&body=This%20is%20a%20updated%20post%20for%20a%20previous%20post,%20where%20we%20built%20ffmpeg%200.8%20with%20Android%20NDK%20r5%20and%20r6.%20This%20post%20will%20give%20instructions%20of%20how%20to%20build%20ffmpeg%202.0.1%20with%20Android%20NDK%20r9.%200.%20Download%20Android%20NDK%20The%20latest%20version%20of%20Android%20NDK%20can%20be%20downloaded%20at%20Android%20NDK%20website.%20At%20the%20time%20of...%20http://p.ost.im/dGAtLL" class="linksalpha_button_email"><span class="linksalpha_button_icon_box linksalpha_button_icon_box_email" style="font-family:arial !important;">Email</span></a>
+			    </div>
+	    	
+	    
+			
+			    <div class="linksalpha_button_icon_box">
+			        <a rel="nofollow" target="print" href="http://www.linksalpha.com/social/redirect?url=http%3A%2F%2Fp.ost.im%2FdGAtLL&s=print&title=How%20to%20Build%20ffmpeg%20with%20NDK%20r9&body=This%20is%20a%20updated%20post%20for%20a%20previous%20post%2C%20where%20we%20built%20ffmpeg%200.8%20with%20Android%20NDK%20r5%20and%20r6.%20This%20post%20will%20give%20instructions%20of%20how%20to%20build%20ffmpeg%202.0.1%20with%20Android%20NDK%20r9.%200.%20Download%20Android%20NDK%20The%20latest%20version%20of%20Android%20NDK%20can%20be%20downloaded%20at%20Android%20NDK%20website.%20At%20the%20time%20of" class="linksalpha_button_url_title_body"><span class="linksalpha_button_icon_box linksalpha_button_icon_box_print" style="font-family:arial !important;">Print</span></a>
+			    </div>
+	    	
+	    
+			
+	    
+			
+	    
+			
+	    
+			
+	    
+	</div>
+	<div style="display:none" title="Share this Page" id="linksalpha-dialog-form_linksalpha_tag_1268139636_success" name="linksalpha-dialog-form_linksalpha_tag_1268139636_success" class="linksalpha-dialog-form">
+	    <div class="noticeSuc"><img src="./install_files/tWTKyZCzJPEqSHRgUB6RqQQVoDT5R6XejJUtqvx6-Wnq0PxnIa2Qc-Uu5kiRnesPYEli8i82K_-Mwin7rF0" style="vertical-align: bottom !important;">&nbsp;Page has been shared successfully.</div>
+	</div>
+</div></div><script type="text/javascript" src="./install_files/loader_icon"></script>									<div class="clear"></div> 
+																</div>	
+							<div class="tags">
+								&nbsp;
+							</div>
+						</div>
+								</div>
+
+	<div class="clear"></div>
+	</div>
+</div>
+<div id="sharebar" class="copy fix">
+	<div class="copy-pad">
+			<div class="post-footer">
+
+					<div class="left">
+						If you enjoyed this article, please consider sharing it!	
+					</div>
+					<div class="right">
+																					<a href="http://reddit.com/submit?phase=2&url=http://www.roman10.net/how-to-build-ffmpeg-with-ndk-r9/&title=How+to+Build+ffmpeg+with+NDK+r9" title="Share on Reddit" rel="nofollow" target="_blank"><img src="./install_files/ico-reddit.png" alt="Reddit"></a>
+														
+															<a href="http://www.facebook.com/sharer.php?u=http://www.roman10.net/how-to-build-ffmpeg-with-ndk-r9/&t=How+to+Build+ffmpeg+with+NDK+r9" title="Share on Facebook" rel="nofollow" target="_blank"><img src="./install_files/ico-facebook.png" alt="Facebook"></a>
+							 
+
+																							<a href="http://twitter.com/?status=How%20to%20Build%20ffmpeg%20with%20NDK%20r9%20-%20http://www.roman10.net/how-to-build-ffmpeg-with-ndk-r9/" title="Share on Twitter" rel="nofollow" target="_blank"><img src="./install_files/ico-twitter.png" alt="Twitter"></a>
+							 
+
+															<a href="http://del.icio.us/post?url=http://www.roman10.net/how-to-build-ffmpeg-with-ndk-r9/&title=How+to+Build+ffmpeg+with+NDK+r9" title="Share on Delicious" rel="nofollow" target="_blank"><img src="./install_files/ico-del.png" alt="Delicious"></a>
+														
+														
+														
+												</div>
+				<div class="clear"></div>
+			</div>
+	
+	<div class="clear"></div>
+	</div>
+</div>
+<div id="pl_comments" class="copy fix">
+	<div class="copy-pad">
+
+<div id="comments">
+				<h3 id="comments-title">89 Responses to <em>How to Build ffmpeg with NDK r9</em></h3>
+
+			<ol class="commentlist">
+						<li class="comment even thread-even depth-1" id="comment-2772">
+				<div id="div-comment-2772" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./install_files/60fd019d0be3516d1ca7024b2608822f" class="avatar avatar-45 photo" height="45" width="45">			<cite class="fn"><a href="http://www.hubino.com/" rel="external nofollow" class="url">vinoth</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://www.roman10.net/how-to-build-ffmpeg-with-ndk-r9/comment-page-8/#comment-2772">
+			May 10, 2014 at 12:26 pm</a>		</div>
+
+		<p>My issue was after building the build_android.sh it cause an error build_one function : not found i think so in script build_one have not be compiled for that i’d give it directly with the function name buid_one. After building no error but folder(android)not found under (NDK/sources/ffmpeg-2.2.2/android) but actually here i use NDK r9 with ffmpeg 2.2.2. with ubuntu 14.04(64 bit).</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://www.roman10.net/how-to-build-ffmpeg-with-ndk-r9/?replytocom=2772#respond" onclick="return addComment.moveForm(&quot;div-comment-2772&quot;, &quot;2772&quot;, &quot;respond&quot;, &quot;1087&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2781">
+				<div id="div-comment-2781" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./install_files/63ddd4243a9ccfe25d73236da6ffa74b" class="avatar avatar-45 photo" height="45" width="45">			<cite class="fn">steveli</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://www.roman10.net/how-to-build-ffmpeg-with-ndk-r9/comment-page-8/#comment-2781">
+			May 12, 2014 at 1:36 pm</a>		</div>
+
+		<p>use the build_android.sh and build in win8 cygwin64 , get error:</p>
+<p>c:/develop/android-ndk-r9d-windows-x86_64/android-ndk-r9d/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/ld.exe: error: cannot open crtbegin_dynamic.o: No such file or directory</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://www.roman10.net/how-to-build-ffmpeg-with-ndk-r9/?replytocom=2781#respond" onclick="return addComment.moveForm(&quot;div-comment-2781&quot;, &quot;2781&quot;, &quot;respond&quot;, &quot;1087&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2794">
+				<div id="div-comment-2794" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./install_files/d291fc45c474bcb6c2fca8bc4cf9dae7" class="avatar avatar-45 photo" height="45" width="45">			<cite class="fn">Salman</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://www.roman10.net/how-to-build-ffmpeg-with-ndk-r9/comment-page-8/#comment-2794">
+			May 14, 2014 at 3:49 pm</a>		</div>
+
+		<p>Hi, I am done with compiling. I downloaded the android-ffmpeg-tutorial1 project. Also created the Android.mk file an pasted the code as you suggested.<br>
+Once I compilte, I get the following error. Can you please guide. </p>
+<p>Android NDK: ERROR:/usr/local/android-ndk/sources/ffmpeg/android/arm/Android.mk:avformat: LOCAL_SRC_FILES points to a missing file<br>
+/usr/local/android-ndk/build/core/prebuilt-library.mk:45: *** Android NDK: Aborting    .  Stop.<br>
+Android NDK: Check that jni/lib/libavformat-55.so exists  or that its path is correct ..</p>
+<p>P.S. I didn’t change anything in the code or directories (its the same as I downloaded)</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://www.roman10.net/how-to-build-ffmpeg-with-ndk-r9/?replytocom=2794#respond" onclick="return addComment.moveForm(&quot;div-comment-2794&quot;, &quot;2794&quot;, &quot;respond&quot;, &quot;1087&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2816">
+				<div id="div-comment-2816" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./install_files/7d3ad8d52258252ae59fba9b27b252e7" class="avatar avatar-45 photo" height="45" width="45">			<cite class="fn">mohan</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://www.roman10.net/how-to-build-ffmpeg-with-ndk-r9/comment-page-8/#comment-2816">
+			May 19, 2014 at 12:09 pm</a>		</div>
+
+		<p>Hi, i tried FFmpeg with windows but it was not worked for me can you please post for windows.</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://www.roman10.net/how-to-build-ffmpeg-with-ndk-r9/?replytocom=2816#respond" onclick="return addComment.moveForm(&quot;div-comment-2816&quot;, &quot;2816&quot;, &quot;respond&quot;, &quot;1087&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2821">
+				<div id="div-comment-2821" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./install_files/f66da910e39d1ddc34082cdc281bdfb3" class="avatar avatar-45 photo" height="45" width="45">			<cite class="fn">Chapola</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://www.roman10.net/how-to-build-ffmpeg-with-ndk-r9/comment-page-8/#comment-2821">
+			May 20, 2014 at 10:58 am</a>		</div>
+
+		<p>Hi , I am compling this library on Ubuntu 12.0 .<br>
+But after following steps:<br>
+android folder not found .<br>
+ $NDK/sources/ffmpeg-2.2.2/android</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://www.roman10.net/how-to-build-ffmpeg-with-ndk-r9/?replytocom=2821#respond" onclick="return addComment.moveForm(&quot;div-comment-2821&quot;, &quot;2821&quot;, &quot;respond&quot;, &quot;1087&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2337">
+				<div id="div-comment-2337" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./install_files/9393ac2d2826fac89efa450c97175398" class="avatar avatar-45 photo" height="45" width="45">			<cite class="fn">VietBQ</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://www.roman10.net/how-to-build-ffmpeg-with-ndk-r9/comment-page-8/#comment-2337">
+			December 27, 2013 at 6:18 pm</a>		</div>
+
+		<p>I build done on Mac OS <img src="./install_files/icon_smile.gif" alt=":)" class="wp-smiley"> </p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://www.roman10.net/how-to-build-ffmpeg-with-ndk-r9/?replytocom=2337#respond" onclick="return addComment.moveForm(&quot;div-comment-2337&quot;, &quot;2337&quot;, &quot;respond&quot;, &quot;1087&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+			</ol>
+									<div class="navigation">
+							<div class="alignleft"><a href="http://www.roman10.net/how-to-build-ffmpeg-with-ndk-r9/comment-page-7/#comments"><span class="meta-nav">←</span> Older Comments</a></div>
+							<div class="alignright"></div>
+						</div> <!-- .navigation -->
+			
+			
+								<div id="respond" class="comment-respond">
+				<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://www.roman10.net/how-to-build-ffmpeg-with-ndk-r9/#respond" style="display:none;">Cancel reply</a></small></h3>
+									<form action="http://www.roman10.net/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																			<p class="comment-notes">Your email address will not be published.</p>							<p class="comment-form-author"><label for="author">Name</label> <input x-autocompletetype="name-full" id="author" name="author" type="text" value="" size="30"></p>
+<p class="comment-form-email"><label for="email">Email</label> <input x-autocompletetype="email" id="email" name="email" type="text" value="" size="30"></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="text" value="" size="30"></p>
+<!-- 64,940 Spam Comments Blocked so far by Spam Free Wordpress version 2.2.4 located at https://www.toddlahman.com/shop/simple-comments/ -->
+<p><input type="text" value="srOpooPU1v9E" onclick="this.select()" size="20">
+		<b>* Copy This Password *</b></p><p><input type="text" name="passthis" id="passthis" value="" size="20">
+		<b>* Type Or Paste Password Here *</b></p>												<p class="comment-form-comment"><label for="comment">Comment</label> <textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>						<p class="form-allowed-tags">You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:  <code>&lt;a href="" title=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt; &lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=""&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;strike&gt; &lt;strong&gt; </code></p>						<p class="form-submit">
+							<input name="submit" type="submit" id="submit" value="Post Comment">
+							<input type="hidden" name="comment_post_ID" value="1087" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+						</p>
+						<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="4d8d8752cc"></p><script type="text/javascript" src="./install_files/form.js"></script>
+<p style="display: none;"></p>					<input type="hidden" id="ak_js" name="ak_js" value="1403235068394"></form>
+							</div><!-- #respond -->
+			</div>
+	<div class="clear"></div>
+	</div>
+</div>
+<div id="pagination" class="copy fix">
+	<div class="copy-pad">
+				
+		<div class="clear"></div>
+	</div>
+</div>
+			</div>
+		</div>
+		
+				
+	</div>	
+	
+	
+	<div id="sidebar-wrap" class="fix">
+			<div id="sidebar1" class="scolumn fix">
+				<div class="scolumn-pad">
+					<div id="sidebar_primary" class="copy fix">
+	<div class="copy-pad">
+	<ul id="list_sidebar_primary" class="sidebar_widgets fix">
+		<li id="text-3" class="widget_text widget fix"><div class="widget-pad">			<div class="textwidget"><script type="text/javascript"><!--
+google_ad_client = "ca-pub-3572106968166596";
+/* rect 1 */
+google_ad_slot = "4862396739";
+google_ad_width = 300;
+google_ad_height = 250;
+//-->
+</script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+		</div></li><li id="categories-4" class="widget_categories widget fix"><div class="widget-pad"><h3 class="widget-title">Categories</h3>		<ul>
+	<li class="cat-item cat-item-18"><a href="http://www.roman10.net/category/android-apps/" title="View all posts filed under Android Apps">Android Apps</a> (19)
+<ul class="children">
+	<li class="cat-item cat-item-92"><a href="http://www.roman10.net/category/android-apps/android-audio-editor/" title="View all posts filed under Android Audio Editor">Android Audio Editor</a> (1)
+</li>
+	<li class="cat-item cat-item-99"><a href="http://www.roman10.net/category/android-apps/oneclick-movie-maker/" title="View all posts filed under OneClick Movie Maker">OneClick Movie Maker</a> (1)
+</li>
+	<li class="cat-item cat-item-43"><a href="http://www.roman10.net/category/android-apps/ts-2/" title="Top Secret Hide/Encrypt Photo/Video">TS 2</a> (3)
+</li>
+	<li class="cat-item cat-item-56"><a href="http://www.roman10.net/category/android-apps/video-converter-android/" title="View all posts filed under Video Converter Android">Video Converter Android</a> (8)
+</li>
+	<li class="cat-item cat-item-96"><a href="http://www.roman10.net/category/android-apps/video2gif/" title="View all posts filed under Video2Gif">Video2Gif</a> (1)
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-27"><a href="http://www.roman10.net/category/android-tutorial/" title="View all posts filed under Android Tutorial">Android Tutorial</a> (31)
+<ul class="children">
+	<li class="cat-item cat-item-72"><a href="http://www.roman10.net/category/android-tutorial/android-dev-tools/" title="View all posts filed under Android Dev Tools">Android Dev Tools</a> (1)
+</li>
+	<li class="cat-item cat-item-40"><a href="http://www.roman10.net/category/android-tutorial/api-illustrated/" title="View all posts filed under API illustrated">API illustrated</a> (8)
+	<ul class="children">
+	<li class="cat-item cat-item-48"><a href="http://www.roman10.net/category/android-tutorial/api-illustrated/multimedia-api/" title="View all posts filed under Multimedia API">Multimedia API</a> (3)
+</li>
+	</ul>
+</li>
+	<li class="cat-item cat-item-39"><a href="http://www.roman10.net/category/android-tutorial/ffmpeg-on-android/" title="View all posts filed under ffmpeg on Android">ffmpeg on Android</a> (5)
+</li>
+	<li class="cat-item cat-item-47"><a href="http://www.roman10.net/category/android-tutorial/ndk/" title="View all posts filed under NDK">NDK</a> (7)
+</li>
+	<li class="cat-item cat-item-38"><a href="http://www.roman10.net/category/android-tutorial/ui/" title="View all posts filed under UI">UI</a> (9)
+	<ul class="children">
+	<li class="cat-item cat-item-98"><a href="http://www.roman10.net/category/android-tutorial/ui/animation/" title="View all posts filed under Animation">Animation</a> (2)
+</li>
+	</ul>
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-24"><a href="http://www.roman10.net/category/code-snippet/" title="View all posts filed under Code Snippet">Code Snippet</a> (2)
+</li>
+	<li class="cat-item cat-item-12"><a href="http://www.roman10.net/category/coding-beyond-technique/" title="View all posts filed under Coding Beyond Technique">Coding Beyond Technique</a> (19)
+<ul class="children">
+	<li class="cat-item cat-item-14"><a href="http://www.roman10.net/category/coding-beyond-technique/a-word-a-world/" title="View all posts filed under a word, a world">a word, a world</a> (4)
+</li>
+	<li class="cat-item cat-item-54"><a href="http://www.roman10.net/category/coding-beyond-technique/bug-rectified/" title="View all posts filed under Bug Rectified">Bug Rectified</a> (5)
+</li>
+	<li class="cat-item cat-item-78"><a href="http://www.roman10.net/category/coding-beyond-technique/programming-habit/" title="View all posts filed under Programming Habit">Programming Habit</a> (1)
+</li>
+	<li class="cat-item cat-item-41"><a href="http://www.roman10.net/category/coding-beyond-technique/software-as-a-career/" title="View all posts filed under Software as a Career">Software as a Career</a> (1)
+</li>
+	<li class="cat-item cat-item-36"><a href="http://www.roman10.net/category/coding-beyond-technique/software-as-user-experience/" title="View all posts filed under Software as User Experience">Software as User Experience</a> (1)
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-93"><a href="http://www.roman10.net/category/compilers-and-related/" title="View all posts filed under Compilers and Related">Compilers and Related</a> (2)
+<ul class="children">
+	<li class="cat-item cat-item-94"><a href="http://www.roman10.net/category/compilers-and-related/elf/" title="View all posts filed under ELF">ELF</a> (2)
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-6"><a href="http://www.roman10.net/category/computer-languages/" title="View all posts filed under Computer Languages">Computer Languages</a> (32)
+<ul class="children">
+	<li class="cat-item cat-item-7"><a href="http://www.roman10.net/category/computer-languages/cc/" title="View all posts filed under C/C++">C/C++</a> (13)
+</li>
+	<li class="cat-item cat-item-63"><a href="http://www.roman10.net/category/computer-languages/java/" title="View all posts filed under Java">Java</a> (10)
+</li>
+	<li class="cat-item cat-item-34"><a href="http://www.roman10.net/category/computer-languages/javascript/" title="View all posts filed under JavaScript">JavaScript</a> (2)
+</li>
+	<li class="cat-item cat-item-51"><a href="http://www.roman10.net/category/computer-languages/php/" title="View all posts filed under PHP">PHP</a> (1)
+</li>
+	<li class="cat-item cat-item-22"><a href="http://www.roman10.net/category/computer-languages/python/" title="View all posts filed under Python">Python</a> (8)
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-8"><a href="http://www.roman10.net/category/data-structure-algorithms/" title="View all posts filed under Data Structure &amp; Algorithms">Data Structure &amp; Algorithms</a> (31)
+<ul class="children">
+	<li class="cat-item cat-item-80"><a href="http://www.roman10.net/category/data-structure-algorithms/bits/" title="View all posts filed under Bits">Bits</a> (1)
+</li>
+	<li class="cat-item cat-item-65"><a href="http://www.roman10.net/category/data-structure-algorithms/data-structure/" title="View all posts filed under Data Structure">Data Structure</a> (5)
+</li>
+	<li class="cat-item cat-item-61"><a href="http://www.roman10.net/category/data-structure-algorithms/integers/" title="View all posts filed under Integers">Integers</a> (10)
+	<ul class="children">
+	<li class="cat-item cat-item-71"><a href="http://www.roman10.net/category/data-structure-algorithms/integers/biginteger/" title="View all posts filed under BigInteger">BigInteger</a> (1)
+</li>
+	<li class="cat-item cat-item-70"><a href="http://www.roman10.net/category/data-structure-algorithms/integers/prime/" title="View all posts filed under Prime">Prime</a> (4)
+</li>
+	</ul>
+</li>
+	<li class="cat-item cat-item-100"><a href="http://www.roman10.net/category/data-structure-algorithms/machine-learning/" title="View all posts filed under Machine Learning">Machine Learning</a> (2)
+</li>
+	<li class="cat-item cat-item-62"><a href="http://www.roman10.net/category/data-structure-algorithms/search/" title="View all posts filed under Search">Search</a> (3)
+</li>
+	<li class="cat-item cat-item-64"><a href="http://www.roman10.net/category/data-structure-algorithms/sorting/" title="View all posts filed under Sorting">Sorting</a> (5)
+</li>
+	<li class="cat-item cat-item-60"><a href="http://www.roman10.net/category/data-structure-algorithms/strings/" title="View all posts filed under Strings">Strings</a> (5)
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-52"><a href="http://www.roman10.net/category/database/" title="View all posts filed under Database">Database</a> (1)
+<ul class="children">
+	<li class="cat-item cat-item-53"><a href="http://www.roman10.net/category/database/sqlite/" title="View all posts filed under SQLite">SQLite</a> (1)
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-16"><a href="http://www.roman10.net/category/digital-signal-processing/" title="View all posts filed under Digital Signal Processing">Digital Signal Processing</a> (33)
+<ul class="children">
+	<li class="cat-item cat-item-95"><a href="http://www.roman10.net/category/digital-signal-processing/digital-audio-processing/" title="View all posts filed under Digital Audio Processing">Digital Audio Processing</a> (4)
+</li>
+	<li class="cat-item cat-item-9"><a href="http://www.roman10.net/category/digital-signal-processing/digital-image-processing/" title="View all posts filed under Digital Image Processing">Digital Image Processing</a> (6)
+</li>
+	<li class="cat-item cat-item-15"><a href="http://www.roman10.net/category/digital-signal-processing/digital-video-processing/" title="View all posts filed under Digital Video Processing">Digital Video Processing</a> (6)
+</li>
+	<li class="cat-item cat-item-10"><a href="http://www.roman10.net/category/digital-signal-processing/video-compression/" title="View all posts filed under Image/Video Compression/Decompression">Image/Video Compression/Decompression</a> (8)
+</li>
+	<li class="cat-item cat-item-32"><a href="http://www.roman10.net/category/digital-signal-processing/multimedia-basics/" title="View all posts filed under Multimedia Basics">Multimedia Basics</a> (6)
+</li>
+	<li class="cat-item cat-item-37"><a href="http://www.roman10.net/category/digital-signal-processing/video-streaming/" title="View all posts filed under Video Streaming">Video Streaming</a> (7)
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-83"><a href="http://www.roman10.net/category/distributed-systems/" title="View all posts filed under Distributed Systems">Distributed Systems</a> (17)
+<ul class="children">
+	<li class="cat-item cat-item-85"><a href="http://www.roman10.net/category/distributed-systems/apache-cassandra/" title="View all posts filed under Apache Cassandra">Apache Cassandra</a> (6)
+</li>
+	<li class="cat-item cat-item-84"><a href="http://www.roman10.net/category/distributed-systems/apache-hadoop/" title="View all posts filed under Apache Hadoop">Apache Hadoop</a> (8)
+	<ul class="children">
+	<li class="cat-item cat-item-89"><a href="http://www.roman10.net/category/distributed-systems/apache-hadoop/apache-avro/" title="View all posts filed under Apache Avro">Apache Avro</a> (3)
+</li>
+	</ul>
+</li>
+	<li class="cat-item cat-item-90"><a href="http://www.roman10.net/category/distributed-systems/apache-nutch/" title="View all posts filed under Apache Nutch">Apache Nutch</a> (3)
+</li>
+	<li class="cat-item cat-item-91"><a href="http://www.roman10.net/category/distributed-systems/apache-solr/" title="View all posts filed under Apache Solr">Apache Solr</a> (1)
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-3"><a href="http://www.roman10.net/category/linux-study-notes/" title="View all posts filed under Linux Study Notes">Linux Study Notes</a> (40)
+<ul class="children">
+	<li class="cat-item cat-item-82"><a href="http://www.roman10.net/category/linux-study-notes/crontab/" title="View all posts filed under crontab">crontab</a> (1)
+</li>
+	<li class="cat-item cat-item-29"><a href="http://www.roman10.net/category/linux-study-notes/linux-kernel-programming/" title="View all posts filed under Linux Kernel Programming">Linux Kernel Programming</a> (8)
+</li>
+	<li class="cat-item cat-item-30"><a href="http://www.roman10.net/category/linux-study-notes/linux-programming/" title="View all posts filed under Linux Programming">Linux Programming</a> (12)
+	<ul class="children">
+	<li class="cat-item cat-item-67"><a href="http://www.roman10.net/category/linux-study-notes/linux-programming/ipc/" title="View all posts filed under IPC">IPC</a> (2)
+</li>
+	<li class="cat-item cat-item-49"><a href="http://www.roman10.net/category/linux-study-notes/linux-programming/linux-network-programming/" title="View all posts filed under Linux Network Programming">Linux Network Programming</a> (5)
+</li>
+	<li class="cat-item cat-item-68"><a href="http://www.roman10.net/category/linux-study-notes/linux-programming/linux-signals/" title="View all posts filed under Linux Signals">Linux Signals</a> (2)
+</li>
+	</ul>
+</li>
+	<li class="cat-item cat-item-76"><a href="http://www.roman10.net/category/linux-study-notes/linux-shell-scripting/" title="View all posts filed under Linux Shell Scripting">Linux Shell Scripting</a> (1)
+</li>
+	<li class="cat-item cat-item-35"><a href="http://www.roman10.net/category/linux-study-notes/ssh/" title="View all posts filed under ssh">ssh</a> (3)
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://www.roman10.net/category/machinery/" title="View all posts filed under Machinery">Machinery</a> (30)
+<ul class="children">
+	<li class="cat-item cat-item-17"><a href="http://www.roman10.net/category/machinery/ffmpeg/" title="View all posts filed under ffmpeg">ffmpeg</a> (4)
+</li>
+	<li class="cat-item cat-item-81"><a href="http://www.roman10.net/category/machinery/git/" title="View all posts filed under git">git</a> (2)
+</li>
+	<li class="cat-item cat-item-69"><a href="http://www.roman10.net/category/machinery/gnuplot/" title="View all posts filed under gnuplot">gnuplot</a> (2)
+</li>
+	<li class="cat-item cat-item-75"><a href="http://www.roman10.net/category/machinery/grep/" title="View all posts filed under grep">grep</a> (1)
+</li>
+	<li class="cat-item cat-item-88"><a href="http://www.roman10.net/category/machinery/jmeter/" title="View all posts filed under JMeter">JMeter</a> (2)
+</li>
+	<li class="cat-item cat-item-5"><a href="http://www.roman10.net/category/machinery/matlab/" title="View all posts filed under Matlab">Matlab</a> (3)
+</li>
+	<li class="cat-item cat-item-86"><a href="http://www.roman10.net/category/machinery/maven/" title="View all posts filed under maven">maven</a> (1)
+</li>
+	<li class="cat-item cat-item-79"><a href="http://www.roman10.net/category/machinery/nagios/" title="View all posts filed under Nagios">Nagios</a> (1)
+</li>
+	<li class="cat-item cat-item-28"><a href="http://www.roman10.net/category/machinery/netfilter/" title="View all posts filed under netfilter">netfilter</a> (7)
+	<ul class="children">
+	<li class="cat-item cat-item-50"><a href="http://www.roman10.net/category/machinery/netfilter/libnetfilter_queue/" title="View all posts filed under libnetfilter_queue">libnetfilter_queue</a> (3)
+</li>
+	</ul>
+</li>
+	<li class="cat-item cat-item-45"><a href="http://www.roman10.net/category/machinery/ns2/" title="View all posts filed under ns2">ns2</a> (2)
+</li>
+	<li class="cat-item cat-item-13"><a href="http://www.roman10.net/category/machinery/opencv/" title="View all posts filed under OpenCV">OpenCV</a> (1)
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-26"><a href="http://www.roman10.net/category/misc/" title="View all posts filed under misc">misc</a> (1)
+</li>
+	<li class="cat-item cat-item-87"><a href="http://www.roman10.net/category/my-ideas/" title="View all posts filed under My Ideas">My Ideas</a> (1)
+</li>
+	<li class="cat-item cat-item-73"><a href="http://www.roman10.net/category/my-project/" title="View all posts filed under My Project">My Project</a> (3)
+<ul class="children">
+	<li class="cat-item cat-item-74"><a href="http://www.roman10.net/category/my-project/mobile-caching/" title="View all posts filed under Mobile Caching">Mobile Caching</a> (1)
+</li>
+	<li class="cat-item cat-item-77"><a href="http://www.roman10.net/category/my-project/selective-decoding/" title="View all posts filed under Selective Decoding">Selective Decoding</a> (2)
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-97"><a href="http://www.roman10.net/category/my-publication/" title="View all posts filed under My Publication">My Publication</a> (1)
+</li>
+	<li class="cat-item cat-item-31"><a href="http://www.roman10.net/category/my-readings/" title="View all posts filed under My Readings">My Readings</a> (1)
+</li>
+	<li class="cat-item cat-item-25"><a href="http://www.roman10.net/category/networking/" title="View all posts filed under Networking">Networking</a> (15)
+<ul class="children">
+	<li class="cat-item cat-item-66"><a href="http://www.roman10.net/category/networking/http/" title="View all posts filed under HTTP">HTTP</a> (1)
+</li>
+	<li class="cat-item cat-item-46"><a href="http://www.roman10.net/category/networking/tcp/" title="View all posts filed under TCP">TCP</a> (6)
+</li>
+	<li class="cat-item cat-item-55"><a href="http://www.roman10.net/category/networking/telnet/" title="View all posts filed under telnet">telnet</a> (1)
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-57"><a href="http://www.roman10.net/category/program-for-performance/" title="View all posts filed under Program for Performance">Program for Performance</a> (8)
+<ul class="children">
+	<li class="cat-item cat-item-58"><a href="http://www.roman10.net/category/program-for-performance/program-for-energy-saving/" title="View all posts filed under Program for Energy Saving">Program for Energy Saving</a> (2)
+</li>
+	<li class="cat-item cat-item-59"><a href="http://www.roman10.net/category/program-for-performance/program-for-speed/" title="View all posts filed under Program for Speed">Program for Speed</a> (5)
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://www.roman10.net/category/uncategorized/" title="View all posts filed under Uncategorized">Uncategorized</a> (1)
+</li>
+	<li class="cat-item cat-item-44"><a href="http://www.roman10.net/category/virtual-machine/" title="View all posts filed under Virtual Machine">Virtual Machine</a> (2)
+</li>
+	<li class="cat-item cat-item-21"><a href="http://www.roman10.net/category/web-dev/" title="View all posts filed under Web Dev">Web Dev</a> (8)
+<ul class="children">
+	<li class="cat-item cat-item-33"><a href="http://www.roman10.net/category/web-dev/web-components/" title="View all posts filed under web components">web components</a> (3)
+</li>
+</ul>
+</li>
+		</ul>
+</div></li>		<li id="recent-posts-4" class="widget_recent_entries widget fix"><div class="widget-pad">		<h3 class="widget-title">Recent Posts</h3>		<ul>
+					<li>
+				<a href="http://www.roman10.net/ghost-object-causing-crash-in-java/">Ghost Object Causing Crash in Java</a>
+						</li>
+					<li>
+				<a href="http://www.roman10.net/logistic-regression/">Logistic Regression</a>
+						</li>
+					<li>
+				<a href="http://www.roman10.net/linear-regression/">Linear Regression</a>
+						</li>
+					<li>
+				<a href="http://www.roman10.net/oneclick-movie-maker-released/">OneClick Movie Maker Released</a>
+						</li>
+					<li>
+				<a href="./install_files/install.html">How to Build ffmpeg with NDK r9</a>
+						</li>
+				</ul>
+		</div></li><li id="recent-comments-4" class="widget_recent_comments widget fix"><div class="widget-pad"><h3 class="widget-title">Recent Comments</h3><ul id="recentcomments"><li class="recentcomments">roman10 on <a href="http://www.roman10.net/android-fileobserverthe-underlying-inotify-mechanism-and-an-example/comment-page-1/#comment-2822">Android FileObserver–The Underlying inotify Mechanism and an Example</a></li><li class="recentcomments">Chapola on <a href="http://www.roman10.net/how-to-build-ffmpeg-with-ndk-r9/comment-page-8/#comment-2821">How to Build ffmpeg with NDK r9</a></li><li class="recentcomments">mohan on <a href="http://www.roman10.net/how-to-build-ffmpeg-with-ndk-r9/comment-page-8/#comment-2816">How to Build ffmpeg with NDK r9</a></li><li class="recentcomments">Salman on <a href="http://www.roman10.net/how-to-build-ffmpeg-with-ndk-r9/comment-page-8/#comment-2794">How to Build ffmpeg with NDK r9</a></li><li class="recentcomments">steveli on <a href="http://www.roman10.net/how-to-build-ffmpeg-with-ndk-r9/comment-page-8/#comment-2781">How to Build ffmpeg with NDK r9</a></li></ul></div></li><li id="archives-4" class="widget_archive widget fix"><div class="widget-pad"><h3 class="widget-title">Archives</h3>		<ul>
+	<li><a href="http://www.roman10.net/2014/06/">June 2014</a>&nbsp;(1)</li>
+	<li><a href="http://www.roman10.net/2014/05/">May 2014</a>&nbsp;(2)</li>
+	<li><a href="http://www.roman10.net/2013/10/">October 2013</a>&nbsp;(1)</li>
+	<li><a href="http://www.roman10.net/2013/08/">August 2013</a>&nbsp;(4)</li>
+	<li><a href="http://www.roman10.net/2013/05/">May 2013</a>&nbsp;(2)</li>
+	<li><a href="http://www.roman10.net/2013/04/">April 2013</a>&nbsp;(1)</li>
+	<li><a href="http://www.roman10.net/2013/03/">March 2013</a>&nbsp;(4)</li>
+	<li><a href="http://www.roman10.net/2012/12/">December 2012</a>&nbsp;(2)</li>
+	<li><a href="http://www.roman10.net/2012/11/">November 2012</a>&nbsp;(6)</li>
+	<li><a href="http://www.roman10.net/2012/10/">October 2012</a>&nbsp;(6)</li>
+	<li><a href="http://www.roman10.net/2012/09/">September 2012</a>&nbsp;(3)</li>
+	<li><a href="http://www.roman10.net/2012/08/">August 2012</a>&nbsp;(13)</li>
+	<li><a href="http://www.roman10.net/2012/07/">July 2012</a>&nbsp;(15)</li>
+	<li><a href="http://www.roman10.net/2012/06/">June 2012</a>&nbsp;(3)</li>
+	<li><a href="http://www.roman10.net/2012/05/">May 2012</a>&nbsp;(8)</li>
+	<li><a href="http://www.roman10.net/2012/04/">April 2012</a>&nbsp;(4)</li>
+	<li><a href="http://www.roman10.net/2012/03/">March 2012</a>&nbsp;(13)</li>
+	<li><a href="http://www.roman10.net/2012/02/">February 2012</a>&nbsp;(19)</li>
+	<li><a href="http://www.roman10.net/2012/01/">January 2012</a>&nbsp;(9)</li>
+	<li><a href="http://www.roman10.net/2011/12/">December 2011</a>&nbsp;(11)</li>
+	<li><a href="http://www.roman10.net/2011/11/">November 2011</a>&nbsp;(12)</li>
+	<li><a href="http://www.roman10.net/2011/10/">October 2011</a>&nbsp;(4)</li>
+	<li><a href="http://www.roman10.net/2011/09/">September 2011</a>&nbsp;(12)</li>
+	<li><a href="http://www.roman10.net/2011/08/">August 2011</a>&nbsp;(16)</li>
+	<li><a href="http://www.roman10.net/2011/07/">July 2011</a>&nbsp;(15)</li>
+	<li><a href="http://www.roman10.net/2011/06/">June 2011</a>&nbsp;(6)</li>
+	<li><a href="http://www.roman10.net/2011/05/">May 2011</a>&nbsp;(10)</li>
+	<li><a href="http://www.roman10.net/2011/04/">April 2011</a>&nbsp;(13)</li>
+	<li><a href="http://www.roman10.net/2011/03/">March 2011</a>&nbsp;(20)</li>
+	<li><a href="http://www.roman10.net/2011/02/">February 2011</a>&nbsp;(4)</li>
+	<li><a href="http://www.roman10.net/2010/11/">November 2010</a>&nbsp;(2)</li>
+	<li><a href="http://www.roman10.net/2010/05/">May 2010</a>&nbsp;(1)</li>
+	<li><a href="http://www.roman10.net/2010/04/">April 2010</a>&nbsp;(1)</li>
+	<li><a href="http://www.roman10.net/2010/02/">February 2010</a>&nbsp;(1)</li>
+		</ul>
+</div></li>	</ul>
+	<div class="clear"></div>
+	</div>
+</div>
+	
+				</div>
+			</div>
+			</div>		
+
+</div>				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+</div>
+</div> <!-- END #dynamic-content -->
+
+<div id="morefoot_area"><div id="morefoot" class="container fix">
+	<div class="texture">
+		<div class="content">
+			<div class="content-pad">
+								<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="twitterbar" class="container fix">
+	<div class="texture">
+		<div class="content">
+			<div class="content-pad">
+<div class="tbubble">
+			Set your Twitter account name in your settings to use the TwitterBar Section.</div>				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<div class="clear"></div>
+				
+</div> <!-- END #page-main from header -->
+</div> <!-- END #page-canvas from header -->
+</div> <!-- END #page from header -->
+
+<div id="footer">
+	<div class="outline fix"><div id="footcols" class="container fix">
+	<div class="texture">
+		<div class="content">
+			<div class="content-pad">
+			<div id="fcolumns_container" class="dcol_container_5 fix">
+				
+									<div class="dcol_5 dcol">
+						<div class="dcol-pad">
+															<h3 class="site-title">
+									<a class="home" href="http://www.roman10.net/" title="Home">
+										roman10									</a>
+								</h3>
+													</div>
+					</div>
+					<div class="dcol_5 dcol">
+						<div class="dcol-pad">
+							<h3 class="widget-title">Pages</h3>
+								<div class="footer-links list-links"><ul><li class="page_item page-item-352"><a href="http://www.roman10.net/about-me/">About Me</a></li><li class="page_item page-item-668"><a href="https://market.android.com/developer?pub=roman10" target="_blank">Android Apps</a></li><li class="page_item page-item-1079"><a href="http://www.roman10.net/wp-content/uploads/2013/08/feipeng_resume_2013_8_8.pdf" target="_blank">Resume</a></li><li class="page_item page-item-713"><a href="http://www.roman10.net/category/android-apps/video-converter-android/">Video Converter Android</a></li></ul></div>
+
+						</div>
+					</div>
+					<div class="dcol_5 dcol">
+						<div class="dcol-pad">
+							<h3 class="widget-title">The Latest</h3>
+								<ul class="latest_posts">
+																		<li class="list-item fix">
+											<div class="list_item_text">
+												<h5><a class="list_text_link" href="http://www.roman10.net/ghost-object-causing-crash-in-java/"><span class="list-title">Ghost Object Causing Crash in Java</span></a></h5>
+												<div class="list-excerpt"> A Bad Code Style  Java’s GC has made our life&nbsp;[…]</div>
+											</div>
+										</li>
+								</ul>
+						</div>
+					</div>
+					<div class="dcol_5 dcol">
+						<div class="dcol-pad">
+							<h3 class="widget-title">More</h3>
+							<div class="findent footer-more">
+								Thanks for dropping by! Feel free to join the discussion by leaving comments, and stay updated by subscribing to the <a href="http://www.roman10.net/?feed=rss2">RSS feed</a>.							</div>
+						</div>
+					</div>
+					<div class="dcol_5 dcol">
+						<div class="dcol-pad">
+							<div class="findent terms">
+								© 2011 roman10							</div>
+						</div>
+					</div>
+							</div>	
+			<div class="clear"></div>
+						<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="cred" class="pagelines"><a class="plimage" target="_blank" href="http://www.pagelines.com/" title="PageLines"><img src="./install_files/pagelines.png" alt="Platform by PageLines"></a></div><div class="clear"></div></div>
+</div>
+</div>
+<script type="text/javascript" src="./install_files/superfish.js"></script>
+<script type="text/javascript" src="./install_files/jquery.bgiframe.min.js"></script>
+<script type="text/javascript" src="./install_files/comment-reply.min.js"></script>
+<script>var pltNewTabURLs = ["https:\/\/market.android.com\/developer?pub=roman10","http:\/\/www.roman10.net\/wp-content\/uploads\/2013\/08\/feipeng_resume_2013_8_8.pdf"];(function(){jQuery(function(e){return e("body").on("click","a",function(t){var n;n=e(this);if(e.inArray(n.attr("href"),pltNewTabURLs)>-1)return n.attr("target","_blank")})})}).call(this);</script>
+<iframe height="0" width="0" frameborder="0" id="linksalpha_info_loader" src="./install_files/info.html"></iframe></body></html>
