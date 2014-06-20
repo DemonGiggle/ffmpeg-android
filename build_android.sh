@@ -1,6 +1,7 @@
 #!/bin/bash
 SYSROOT=$NDK/platforms/android-9/arch-arm/
 TOOLCHAIN=$NDK/toolchains/arm-linux-androideabi-4.8/prebuilt/linux-x86_64
+FFMPEG_OUTPUT_SOURCES=$NDK/sources/ffmpeg
 function build_one
 {
 ./configure \
@@ -25,7 +26,10 @@ function build_one
     $ADDITIONAL_CONFIGURE_FLAG
 make clean
 make -j4
-make install
+sudo make install
+
+# make a symbolic link to the current source folder
+ln -f -s `pwd` $FFMPEG_OUTPUT_SOURCES
 }
 CPU=arm
 PREFIX=$(pwd)/android/$CPU 
