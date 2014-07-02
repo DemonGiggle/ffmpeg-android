@@ -3,7 +3,8 @@
 
 2) export NDK environment variable. e.g. export NDK=/opt/adt-bundle-linux-x86_64/ndk
 
-3) ./build_android.sh
+3) Linux: ./build_android.sh
+   Mac: ./build_android_for_mac.sh
 
 NOTICE
 
